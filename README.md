@@ -1,8 +1,8 @@
 # Kids Logic Lab｜因數冒險島
 
-給國小高年級學生的互動邏輯數學遊戲。第一章以「先玩、再觀察、再猜、再說明」的方式學質數、因數、互質、最大公因數與最小公倍數。
+給國小高年級學生的互動邏輯數學遊戲。第一章以「先玩、再觀察、再猜、再說明」的方式學質數、因數、互質、最大公因數、最小公倍數、比例、條件篩選與空間推理。
 
-## 已完成的第一階段
+## 已完成
 
 - 遊戲首頁、世界地圖、XP / 等級 / 星星 / 金幣
 - 質數森林：Pointer Events 拖曳分類
@@ -14,15 +14,18 @@
 - 操場追逐戰：150 秒 vs 120 秒跑道動畫
 - 路燈工程：120 / 168 / 192 最大共同間距模擬
 - 數字怪獸分隊：6 隻怪獸拖曳分組、質因數能量平衡
-- 自由練習 10 題、隨機變化題、錯題本與再次挑戰
-- 同裝置 2 人對戰：拖曳 + GCD/LCM 速度回合、答錯鎖定
-- 今日學習報告、成就與設定
-- 本機進度封裝儲存，可日後替換成 API
+- 14×12 長方形拼板：拖曳、旋轉、格線吸附、重疊/邊界判定
+- 紙張對摺實驗室：上下/左右對摺、展開、尺寸與層數追蹤
+- 96→66 條件篩選器：可視化集合排除
+- 6:2:1 齒輪工坊：拖曳比例，GCD=12 → 72/24/12，LCM=72
+- +88 公倍數數線：0–500 實際跳躍，落點 88/176/264/352/440
+- 自由練習、錯題本、同裝置 2 人對戰、學習報告、成就與設定
+- `src/data/advancedQuestions.js`：後續教材照片可持續轉成獨立題庫資料
 - 390px 手機、iPad、桌面 Responsive；支援 reduced motion
 
 ## 開發 / 測試
 
-不需要安裝任何前端套件；GitHub Pages 可直接從 repository root 發佈。
+不需要安裝任何前端套件。
 
 ```bash
 npm test
@@ -30,18 +33,10 @@ npm run check
 python3 -m http.server 8080
 ```
 
-數學測試覆蓋教材指定案例：
-
-- `isPrime(17) = true`
-- `isPrime(27) = false`
-- `gcd(165,217) = 1`
-- `gcdMany([57,95,209]) = 19`
-- `lcm(132,44) = 132`
-- `lcmMany([15,16,18]) = 720`
-- `lcm(150,120) = 600`
-- `gcdMany([120,168,192]) = 24`
-- `countTrailingZerosFactorial(50) = 12`
+新一階段測試另外覆蓋：14×12 拼板、紙張三次對摺、96→66、6:2:1 齒輪與 +88 數線。
 
 ## GitHub Pages
 
-在 repository **Settings → Pages → Build and deployment** 選擇 **Deploy from a branch**，Branch 選 `main` / `(root)`。
+已加入 `.github/workflows/pages.yml`，`main` 更新時會使用 GitHub 官方 Pages Actions 自動部署。
+
+測試網址：<https://teuton.github.io/kids-logic-lab/>

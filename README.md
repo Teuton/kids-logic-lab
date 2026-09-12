@@ -37,6 +37,6 @@ python3 -m http.server 8080
 
 ## GitHub Pages
 
-已加入 `.github/workflows/pages.yml`，`main` 更新時會使用 GitHub 官方 Pages Actions 自動部署。
+公開網站由 `gh-pages` 分支根目錄發布，並使用 `.nojekyll` 直接提供靜態 ES Modules / CSS。
 
 測試網址：<https://teuton.github.io/kids-logic-lab/>

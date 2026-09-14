@@ -23,5 +23,5 @@ jobs:
           grep -q '/kids-logic-lab/' dist/index.html
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Responsive browser smoke tests
-        run: npm run test:responsive
+      - name: Browser smoke and gameplay E2E tests
+        run: npm run test:browser

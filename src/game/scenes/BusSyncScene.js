@@ -143,7 +143,7 @@ export class BusSyncScene extends Phaser.Scene {
     }
     bus.x = fromX;
     this.tweens.killTweensOf(bus);
-    this.tweens.timeline({
+    this.tweens.chain({
       targets: bus,
       tweens: [
         { x: stationX, duration: 260, ease: 'Sine.easeOut' },

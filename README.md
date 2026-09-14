@@ -160,21 +160,29 @@ npm run build
 - 45 顆橘子的合法與非法平均分組
 - 45 的合法箱數集合
 
-另外有 Playwright responsive smoke test：
+Playwright 提供兩層驗證：
 
 ```bash
 npx playwright install chromium
 npm run test:responsive
+npm run test:browser
 ```
 
-CI 會實際用 Chromium 驗證：
+`test:responsive` 專門驗證以下尺寸：
 
 - 390 × 844
 - 430 × 932
 - 768 × 1024
 - 1440 × 900
 
-並開啟首頁、城市地圖與三個 V2 Phaser 關卡，檢查 Canvas、44px 操作目標、runtime error 與橫向溢位。
+`test:browser` 是 CI 的完整瀏覽器驗收，除了以上四個尺寸，還會真的把三個 V2 關卡玩到概念揭曉，確認：
+
+- 路燈 24m → 最大公因數 / GCD 揭曉
+- 1、3、5、9、15、45 六種裝箱 → 45 的因數揭曉
+- 公車逐分鐘走到 24 → 最小公倍數 / LCM 揭曉
+- reduced motion 開啟後仍可完成關卡
+- 自由練習、雙人、錯題、成就、報告、設定等既有路由可正常開啟
+- Canvas、44px 操作目標、runtime error 與橫向溢位檢查
 
 ## Production Build
 

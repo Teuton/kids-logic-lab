@@ -1,12 +1,23 @@
 name: tests
 on: [push, pull_request]
+
 jobs:
-  math-and-syntax:
+  math-game-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm test
-      - run: npm run check
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Unit tests
+        run: npm test
+      - name: Syntax check
+        run: npm run check
+      - name: Production build
+        run: npm run build
+      - name: Verify GitHub Pages base path
+        run: |
+          test -f dist/index.html
+          grep -q '/kids-logic-lab/' dist/index.html

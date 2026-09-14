@@ -1,3 +1,0 @@
-import { getPlayerSummary } from '../game/progress.js';
-import { escapeHtml } from './components.js';
-export function renderShell(root,state,{title='因數冒險島',back=null,content=''}={}){const s=getPlayerSummary(state);root.innerHTML=`<div class="app-shell"><header class="topbar"><div class="topbar-left">${back?'<button class="icon-btn" data-back aria-label="返回">←</button>':'<span class="mascot-mini">🧭</span>'}<strong>${escapeHtml(title)}</strong></div><div class="player-strip"><span>Lv.${s.level}</span><span>✨ ${s.xp}</span><span>⭐ ${s.stars}</span><span>🪙 ${s.coins}</span></div></header><main class="screen">${content}</main></div>`;if(back)root.querySelector('[data-back]').addEventListener('click',back);return root.querySelector('.screen');}

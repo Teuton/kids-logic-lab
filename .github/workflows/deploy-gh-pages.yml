@@ -47,3 +47,23 @@ jobs:
           fi
           git commit -m "deploy: Math King ${GITHUB_SHA::7}"
           git push origin HEAD:gh-pages
+      - name: Verify exact build is live on GitHub Pages
+        run: |
+          expected_asset=$(grep -o '/kids-logic-lab/assets/index-[^"[:space:]]*\.js' dist/index.html | head -n 1)
+          test -n "$expected_asset"
+          echo "Waiting for public Pages to serve: $expected_asset"
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --show-error --location \
+              -H 'Cache-Control: no-cache' \
+              "https://teuton.github.io/kids-logic-lab/?verify=${GITHUB_SHA}-${attempt}" \
+              -o /tmp/math-king-live.html \
+              && grep -Fq "$expected_asset" /tmp/math-king-live.html \
+              && grep -Fq '數學王 Math King' /tmp/math-king-live.html; then
+              echo "Public GitHub Pages is serving the exact production build."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Public Pages did not serve the expected asset in time."
+          cat /tmp/math-king-live.html 2>/dev/null || true
+          exit 1

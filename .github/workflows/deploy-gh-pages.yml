@@ -1,0 +1,49 @@
+name: deploy-gh-pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: math-king-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Test
+        run: npm test
+      - name: Build static site
+        run: npm run build
+      - name: Publish dist to gh-pages without force push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          git worktree add /tmp/math-king-gh-pages origin/gh-pages
+          find /tmp/math-king-gh-pages -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -R dist/. /tmp/math-king-gh-pages/
+          touch /tmp/math-king-gh-pages/.nojekyll
+          cd /tmp/math-king-gh-pages
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No Pages changes to publish."
+            exit 0
+          fi
+          git commit -m "deploy: Math King ${GITHUB_SHA::7}"
+          git push origin HEAD:gh-pages

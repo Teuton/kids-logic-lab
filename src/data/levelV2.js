@@ -58,6 +58,7 @@ export function v2LevelById(id) {
 }
 
 export function worldForLevel(level) {
+  if (level.world) return level.world;
   if (v2Levels[level.id]) return v2Levels[level.id].world;
   if (level.id.includes('factory') || level.id === 'gear-ratio') return 'factory';
   if (level.id.includes('running') || level.id.includes('lcm')) return 'stadium';

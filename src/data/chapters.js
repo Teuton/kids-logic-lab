@@ -1,4 +1,6 @@
-export const levels = [
+import { lifeMissionLevels } from './lifeMissionLevels.js';
+
+const legacyLevels = [
   { id:'prime-forest',order:1,title:'質數森林',icon:'🌲',subtitle:'把數字送回正確的家',xp:90 },
   { id:'factor-factory',order:2,title:'因數工廠',icon:'⚙️',subtitle:'啟動 45 的乘法機器',xp:100 },
   { id:'coprime-gate',order:3,title:'互質守門員',icon:'🏰',subtitle:'GCD = 1 才能通過',xp:110 },
@@ -14,5 +16,7 @@ export const levels = [
   { id:'gear-ratio',order:13,title:'6:2:1 齒輪工坊',icon:'⚙️',subtitle:'比例 × GCD 找出三個數',xp:160 },
   { id:'lcm-number-line',order:14,title:'+88 公倍數數線',icon:'🪙',subtitle:'共同倍數是 LCM 的倍數',xp:150 },
 ];
-export const chapter={id:'factors-lcm-gcd',title:'第一章｜最大公因數與最小公倍數',shortTitle:'因數冒險島',levels};
+
+export const levels = [...legacyLevels, ...lifeMissionLevels];
+export const chapter={id:'factors-lcm-gcd',title:'數學王｜生活數學任務',shortTitle:'生活數學城市',levels};
 export function levelById(id){return levels.find(level=>level.id===id);}

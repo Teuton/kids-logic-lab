@@ -38,7 +38,7 @@ for (const viewport of requiredViewports) {
     await expectNoHorizontalOverflow(page);
 
     await page.locator('[data-start]').click();
-    await expect(page.locator('.city-level')).toHaveCount(14);
+    await expect(page.locator('.city-level')).toHaveCount(35);
     await expectNoHorizontalOverflow(page);
 
     for (const levelId of ['factor-factory', 'lcm-race', 'lamp-mission']) {

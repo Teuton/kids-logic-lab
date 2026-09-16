@@ -10,7 +10,8 @@ test('official Math King publishes a continuous 1 through 40 level sequence', ()
   );
 });
 
-test('official Math King level 1 is not the legacy prime forest', () => {
-  assert.notEqual(levels[0]?.title, '質數森林');
+test('official Math King starts with the strawberry boxing mission', () => {
   assert.equal(levels[0]?.order, 1);
+  assert.equal(levels[0]?.id, 'level-01-strawberry-boxes');
+  assert.equal(levels[0]?.title, '24 顆草莓怎麼裝盒？');
 });

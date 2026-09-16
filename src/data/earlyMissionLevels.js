@@ -42,8 +42,8 @@ export const earlyMissionLevels = [
       { label: '排 8 顆水果', result: '8 可以排成 1×8，也可以排成 2×4。' },
       { label: '比較排列方式', result: '只能有 1×自己這組因數配對的數，會成為後面的「質數」。' },
     ],
-    challenge: { type: 'choice', prompt: '哪一個數和 7 一樣，只能排成 1×自己的長方形？', options: [option(5), option(6), option(9), option(11)], answer: 11 },
-    hints: ['找只有 1 和自己兩個因數的數。', '6 和 9 都能排出別的長方形。', '11 只有 1×11。'],
+    challenge: { type: 'choice', prompt: '哪一個數和 7 一樣，只能排成 1×自己的長方形？', options: [option(6), option(8), option(9), option(11)], answer: 11 },
+    hints: ['找只有 1 和自己兩個因數的數。', '6、8、9 都能排出別的長方形。', '11 只有 1×11。'],
   },
   {
     id: 'level-05-prime-detective', order: 5, title: '質數偵探', icon: '🕵️', subtitle: '從 1～50 找出只有兩個因數的數', xp: 115, world: 'park', concept: 'prime',

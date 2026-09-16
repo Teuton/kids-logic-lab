@@ -69,3 +69,16 @@ test('原有主要模式路由仍可開啟', async ({ page }) => {
   }
   expect(pageErrors).toEqual([]);
 });
+
+test('正式第 1 關會開啟草莓裝盒任務而不是質數森林', async ({ page }) => {
+  const pageErrors = await collectPageErrors(page);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('#level/level-01-strawberry-boxes');
+
+  await expect(page.getByRole('heading', { name: '24 顆草莓怎麼裝盒？' })).toBeVisible();
+  await expect(page.locator('[data-stage-next]')).toHaveText('先試 5 盒');
+  await page.locator('[data-stage-next]').click();
+  await expect(page.locator('[data-world]')).toContainText('24 ÷ 5 會剩 4 顆');
+
+  expect(pageErrors).toEqual([]);
+});

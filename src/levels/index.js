@@ -12,6 +12,7 @@ import {renderPaperFold} from './paperFold.js';
 import {renderCandyFilter} from './candyFilter.js';
 import {renderGearRatio} from './gearRatio.js';
 import {renderLcmNumberLine} from './lcmNumberLine.js';
+import { earlyMissionLevels } from '../data/earlyMissionLevels.js';
 import { lifeMissionLevels } from '../data/lifeMissionLevels.js';
 import { makeLifeMissionRenderer } from './lifeMission.js';
 
@@ -32,6 +33,7 @@ const legacyRenderers = {
   'lcm-number-line':renderLcmNumberLine,
 };
 
+const earlyMissionRenderers = Object.fromEntries(earlyMissionLevels.map((mission) => [mission.id, makeLifeMissionRenderer(mission)]));
 const lifeMissionRenderers = Object.fromEntries(lifeMissionLevels.map((mission) => [mission.id, makeLifeMissionRenderer(mission)]));
 
-export const levelRenderers = { ...legacyRenderers, ...lifeMissionRenderers };
+export const levelRenderers = { ...legacyRenderers, ...earlyMissionRenderers, ...lifeMissionRenderers };

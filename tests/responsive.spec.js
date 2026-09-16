@@ -38,7 +38,8 @@ for (const viewport of requiredViewports) {
     await expectNoHorizontalOverflow(page);
 
     await page.locator('[data-start]').click();
-    await expect(page.locator('.city-level')).toHaveCount(35);
+    await expect(page.locator('.city-level')).toHaveCount(40);
+    await expect(page.locator('.city-level').first()).toContainText('24 顆草莓怎麼裝盒？');
     await expectNoHorizontalOverflow(page);
 
     for (const levelId of ['factor-factory', 'lcm-race', 'lamp-mission']) {
